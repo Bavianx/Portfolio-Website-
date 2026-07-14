@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <meta name="design_doc_mode" content="canvas">
+  <link rel="stylesheet" href="modernist.css">
+  <link rel="stylesheet" href="organic.css">
+  <style>
+    body { margin: 0; background: #e4e4e4; }
+    .frame-badge { font-family: system-ui, sans-serif; font-weight: 700; font-size: 15px; letter-spacing: 0.02em; color: #201e1d; margin-bottom: 10px; display: inline-flex; align-items: center; gap: 8px; }
+    .frame-badge .dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+    .scroller { overflow-y: auto; overflow-x: hidden; scroll-behavior: smooth; box-shadow: 0 20px 60px rgba(0,0,0,0.22); }
+    .scroller::-webkit-scrollbar { width: 10px; }
+    .scroller::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); border-radius: 8px; }
+    section[data-reveal] { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    section[data-reveal].is-visible { opacity: 1; transform: translateY(0); }
+  </style>
+</helmet>
+
+<div style="position:relative; width:3300px; height:1620px; font-family: system-ui, sans-serif;">
+
+  <div style="position:absolute; left:80px; top:40px;">
+    <div class="frame-badge"><span class="dot" style="background:#ec3013;"></span>Modernist</div>
+    <div class="modernist-frame scroller" id="modernist-scroll" style="width:1440px; height:1520px; position:relative;">
+
+      <nav class="nav" style="position:sticky; top:0; z-index:5; background:var(--color-bg);">
+        <div class="nav-brand">Tavian Coulthard</div>
+        <a href="#m-about">About</a>
+        <a href="#m-skills" style="margin-left:16px;">Skills</a>
+        <a href="#m-projects" style="margin-left:16px;">Projects</a>
+        <a href="#m-contact" style="margin-left:16px;">Contact</a>
+        <a href="https://github.com/Bavianx" target="_blank" rel="noopener" class="btn btn-icon" title="GitHub" aria-label="GitHub">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"></path></svg>
+        </a>
+        <a class="btn btn-secondary" href="#" download="Tavian-Coulthard-Resume.pdf">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg>
+          Resume
+        </a>
+      </nav>
+
+      <section style="padding: 96px 64px 72px; border-bottom: 2px solid var(--color-divider);">
+        <div style="font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--color-accent-700); font-weight:700; margin-bottom:16px;">Junior Software Engineer</div>
+        <h1 style="font-size:76px; max-width:820px; margin:0 0 24px;">Tavian Deluce Coulthard</h1>
+        <p style="max-width:560px; font-size:17px; opacity:0.85;">I'm a junior software engineer who enjoys turning data into decisions - building dashboards, API's and tools with Python, Django and React. Currently exploring geopolitical intelligence, systems security and clean interfaces for messy data.</p>
+        <div style="display:flex; gap:12px; margin-top:32px;">
+          <a href="#m-projects" class="btn btn-primary">View Projects</a>
+          <a href="#m-contact" class="btn btn-secondary">Get in Touch</a>
+        </div>
+      </section>
+
+      <section id="m-about" data-reveal="" style="padding: 72px 64px; border-bottom: 2px solid var(--color-divider); display:grid; grid-template-columns: 1fr 2fr; gap:48px;">
+        <h6 style="margin: 0; width: 109px; height: 70px">About</h6><p style="font-size: 17px; max-width: 640px; margin: 0; width: 984px; height: 121px">Cyber Security graduate turned Software Engineer bridging secure system thinking with real world application development. From discovering zero-day vulnerabilities to building AI-powered intelligence dashboards. Actively pursuing Forward Deployed Software Engineering roles where technical depth meets direct client impact.</p>
+        
+      </section>
+
+      <section id="m-skills" data-reveal="" style="padding: 72px 64px; border-bottom: 2px solid var(--color-divider);">
+        <h6 style="margin:0 0 32px;">Skills</h6>
+        <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:2px; background:var(--color-divider);">
+          <sc-for list="{{ skillGroups }}" as="group" hint-placeholder-count="3">
+            <div style="background:var(--color-bg); padding:28px;">
+              <h4 style="margin:0 0 16px;">{{ group.title }}</h4>
+              <div style="display:flex; flex-wrap:wrap; gap:8px;">
+                <sc-for list="{{ group.items }}" as="skill" hint-placeholder-count="4">
+                  <span class="tag tag-accent">{{ skill }}</span>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section id="m-projects" data-reveal="" style="padding: 72px 64px; border-bottom: 2px solid var(--color-divider);">
+        <h6 style="margin:0 0 32px;">Projects</h6>
+        <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:24px;">
+          <sc-for list="{{ projects }}" as="proj" hint-placeholder-count="4">
+            <div class="card elev-sm" style="padding:0; overflow:hidden; transition:transform 0.2s ease, box-shadow 0.2s ease;" style-hover="transform:translateY(-6px); box-shadow:var(--shadow-lg);">
+              <sc-if value="{{ proj.imgSrc }}" hint-placeholder-val="{{ false }}">
+                <img src="{{ proj.imgSrc }}" alt="{{ proj.name }}" style="height:160px; width:100%; object-fit:cover; object-position: top;">
+              </sc-if>
+              <sc-if value="{{ !proj.imgSrc }}" hint-placeholder-val="{{ true }}">
+                <div style="height:160px; background: repeating-linear-gradient(45deg, var(--color-neutral-300), var(--color-neutral-300) 10px, var(--color-neutral-200) 10px, var(--color-neutral-200) 20px); display:flex; align-items:center; justify-content:center; font-family: monospace; font-size:11px; color:var(--color-neutral-700);">{{ proj.imgLabel }}</div>
+              </sc-if>
+              <div style="padding:24px; display:flex; flex-direction:column; gap:10px;">
+                <div class="card-title">{{ proj.name }}</div>
+                <p class="card-body">{{ proj.desc }}</p>
+                <div style="display:flex; flex-wrap:wrap; gap:6px;">
+                  <sc-for list="{{ proj.tags }}" as="tag" hint-placeholder-count="3">
+                    <span class="tag tag-neutral">{{ tag }}</span>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section id="m-contact" data-reveal="" style="padding: 72px 64px 120px; display:grid; grid-template-columns: 1fr 1fr; gap:48px;">
+        <div>
+          <h6 style="margin:0 0 16px;">Contact</h6>
+          <h2 style="margin:0 0 16px;">Let's work together.</h2>
+          <p style="opacity:0.8; max-width:420px;">Have a role, project or question? Send a message and I'll get back to you.</p>
+        </div>
+        <sc-if value="{{ !modernistSubmitted }}" hint-placeholder-val="{{ true }}">
+          <form style="display:flex; flex-direction:column; gap:16px;" onsubmit="{{ onModernistSubmit }}">
+            <div class="field"><label>Name</label><input class="input" name="name" type="text" required="{{ true }}"></div>
+            <div class="field"><label>Email</label><input class="input" name="email" type="email" required="{{ true }}"></div>
+            <div class="field"><label>Message</label><textarea class="input" name="message" rows="4" required="{{ true }}"></textarea></div>
+            <button class="btn btn-primary btn-block" type="submit" disabled="{{ formSending }}">{{ sendLabel }}</button>
+          </form>
+        </sc-if>
+        <sc-if value="{{ modernistSubmitted }}" hint-placeholder-val="{{ false }}">
+          <div class="card elev-sm"><div class="card-title">Thanks — message sent.</div><p class="card-body">I'll reply as soon as I can.</p></div>
+        </sc-if>
+      </section>
+
+      <footer style="padding:32px 64px; border-top: 2px solid var(--color-divider); font-size:12px; opacity:0.6;">© 2026 Tavian Deluce Coulthard</footer>
+    </div>
+  </div>
+
+  <div style="position:absolute; left:1780px; top:40px;">
+    <div class="frame-badge"><span class="dot" style="background:#c67139;"></span>Organic</div>
+    <div class="organic-frame scroller" id="organic-scroll" style="width:1440px; height:1520px; position:relative; border-radius:28px;">
+
+      <nav class="nav" style="position:sticky; top:0; z-index:5; background:var(--color-bg);">
+        <div class="nav-brand">Tavian Coulthard</div>
+        <a href="#o-about">About</a>
+        <a href="#o-skills" style="margin-left:16px;">Skills</a>
+        <a href="#o-projects" style="margin-left:16px;">Projects</a>
+        <a href="#o-contact" style="margin-left:16px;">Contact</a>
+        <a href="https://github.com/Bavianx" target="_blank" rel="noopener" class="btn btn-icon" title="GitHub" aria-label="GitHub">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"></path></svg>
+        </a>
+        <a class="btn btn-secondary" href="#" download="Tavian-Coulthard-Resume.pdf">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg>
+          Resume
+        </a>
+      </nav>
+
+      <section style="padding: 96px 64px 72px;">
+        <div style="font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--color-accent-700); font-weight:700; margin-bottom:16px;">Junior Software Engineer</div>
+        <h1 style="font-size:64px; max-width:760px; margin:0 0 24px;">Tavian Deluce Coulthard</h1>
+        <p style="max-width:540px; font-size:17px; opacity:0.85;">I'm a junior software engineer who enjoys turning data into decisions — building dashboards, APIs and tools with Python, Django and React. Currently exploring geopolitical intelligence, systems security and clean interfaces for messy data.</p>
+        <div style="display:flex; gap:12px; margin-top:32px;">
+          <a href="#o-projects" class="btn btn-primary">View Projects</a>
+          <a href="#o-contact" class="btn btn-secondary">Get in Touch</a>
+        </div>
+      </section>
+
+      <section id="o-about" data-reveal="" style="padding: 56px 64px; display:grid; grid-template-columns: 1fr 2fr; gap:48px;">
+        <h6 style="margin:0; color:var(--color-accent-2-700);">About</h6>
+        <p style="font-size:17px; max-width:620px; margin:0;">I'm a junior software engineer who enjoys turning data into decisions — building dashboards, APIs and tools with Python, Django and React. Currently exploring geopolitical intelligence, systems security and clean interfaces for messy data.</p>
+      </section>
+
+      <section id="o-skills" data-reveal="" style="padding: 56px 64px;">
+        <h6 style="margin:0 0 32px; color:var(--color-accent-2-700);">Skills</h6>
+        <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:20px;">
+          <sc-for list="{{ skillGroups }}" as="group" hint-placeholder-count="3">
+            <div class="card elev-sm">
+              <div class="card-kicker">{{ group.title }}</div>
+              <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:8px;">
+                <sc-for list="{{ group.items }}" as="skill" hint-placeholder-count="4">
+                  <span class="tag tag-accent">{{ skill }}</span>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section id="o-projects" data-reveal="" style="padding: 56px 64px;">
+        <h6 style="margin:0 0 32px; color:var(--color-accent-2-700);">Projects</h6>
+        <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:24px;">
+          <sc-for list="{{ projects }}" as="proj" hint-placeholder-count="4">
+            <div class="card elev-md" style="padding:0; overflow:hidden; transition:transform 0.2s ease, box-shadow 0.2s ease;" style-hover="transform:translateY(-6px); box-shadow:var(--shadow-lg);">
+              <sc-if value="{{ proj.imgSrc }}" hint-placeholder-val="{{ false }}">
+                <img class="washed" src="{{ proj.imgSrc }}" alt="{{ proj.name }}" style="height:160px; width:100%; object-fit:cover; object-position: top; border-radius: var(--radius-lg) var(--radius-lg) 0 0;">
+              </sc-if>
+              <sc-if value="{{ !proj.imgSrc }}" hint-placeholder-val="{{ true }}">
+                <div class="washed" style="height:160px; border-radius: var(--radius-lg) var(--radius-lg) 0 0; background: repeating-linear-gradient(45deg, var(--color-neutral-300), var(--color-neutral-300) 10px, var(--color-neutral-200) 10px, var(--color-neutral-200) 20px); display:flex; align-items:center; justify-content:center; font-family: monospace; font-size:11px; color:var(--color-neutral-700);">{{ proj.imgLabel }}</div>
+              </sc-if>
+              <div style="padding:24px; display:flex; flex-direction:column; gap:10px;">
+                <div class="card-title">{{ proj.name }}</div>
+                <p class="card-body">{{ proj.desc }}</p>
+                <div style="display:flex; flex-wrap:wrap; gap:6px;">
+                  <sc-for list="{{ proj.tags }}" as="tag" hint-placeholder-count="3">
+                    <span class="tag tag-accent-2">{{ tag }}</span>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section id="o-contact" data-reveal="" style="padding: 56px 64px 120px; display:grid; grid-template-columns: 1fr 1fr; gap:48px;">
+        <div>
+          <h6 style="margin:0 0 16px; color:var(--color-accent-2-700);">Contact</h6>
+          <h2 style="margin:0 0 16px;">Let's work together.</h2>
+          <p style="opacity:0.8; max-width:420px;">Have a role, project or question? Send a message and I'll get back to you.</p>
+        </div>
+        <sc-if value="{{ !organicSubmitted }}" hint-placeholder-val="{{ true }}">
+          <form style="display:flex; flex-direction:column; gap:16px;" onsubmit="{{ onOrganicSubmit }}">
+            <div class="field"><label>Name</label><input class="input" name="name" type="text" required="{{ true }}"></div>
+            <div class="field"><label>Email</label><input class="input" name="email" type="email" required="{{ true }}"></div>
+            <div class="field"><label>Message</label><textarea class="input" name="message" rows="4" required="{{ true }}"></textarea></div>
+            <button class="btn btn-primary btn-block" type="submit" disabled="{{ formSending }}">{{ sendLabel }}</button>
+          </form>
+        </sc-if>
+        <sc-if value="{{ organicSubmitted }}" hint-placeholder-val="{{ false }}">
+          <div class="card elev-sm"><div class="card-title">Thanks — message sent.</div><p class="card-body">I'll reply as soon as I can.</p></div>
+        </sc-if>
+      </section>
+
+      <footer style="padding:32px 64px; font-size:12px; opacity:0.6;">© 2026 Tavian Deluce Coulthard</footer>
+    </div>
+  </div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const FORM_ENDPOINT = 'https://formspree.io/f/xqerkgkv';
+
+class Component extends DCLogic {
+  state = {
+    modernistSubmitted: false,
+    organicSubmitted: false,
+    sending: false,
+  };
+
+  async submitForm(e, stateKey) {
+    e.preventDefault();
+    this.setState({ sending: true });
+    try {
+      const res = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        body: new FormData(e.target),
+        headers: { Accept: 'application/json' },
+      });
+      if (res.ok) {
+        this.setState({ [stateKey]: true, sending: false });
+      } else {
+        this.setState({ sending: false });
+        alert('Message could not be sent — please email me directly instead.');
+      }
+    } catch (err) {
+      this.setState({ sending: false });
+      alert('Message could not be sent — please email me directly instead.');
+    }
+  }
+
+  componentDidMount() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('is-visible');
+      });
+    }, { threshold: 0.15 });
+    this._observer = observer;
+    this._root = this._root || null;
+    // Observe reveal sections within both scrollable frames.
+    document.querySelectorAll('[data-reveal]').forEach((el) => observer.observe(el));
+  }
+
+  componentWillUnmount() {
+    if (this._observer) this._observer.disconnect();
+  }
+
+  renderVals() {
+    const skillGroups = [
+      { title: 'Languages & Frameworks', items: ['Python', 'Django', 'SQL', 'React', 'TypeScript'] },
+      { title: 'Libraries & Practices', items: ['Pandas', 'Plotly', 'PostgreSQL', 'NumPy', 'REST APIs', 'Git / GitHub', 'Redis'] },
+      { title: 'Systems & Infrastructure', items: ['Windows Server 2019', 'Network Security', 'Information Security Mgmt'] },
+    ];
+
+    const projects = [
+      {
+        name: 'PANTHEON — Geopolitical Intelligence Dashboard',
+        desc: 'A dashboard surfacing geopolitical signals and risk indicators in real time.',
+        tags: ['React', 'TypeScript', 'REST API'],
+        imgLabel: '[ pantheon dashboard screenshot ]',
+        imgSrc: 'assets/project-pantheon.png',
+      },
+      {
+        name: 'Doomsday Geopolitical Dashboard',
+        desc: 'Tracks global risk indices and doomsday-clock style metrics across regions.',
+        tags: ['Python', 'Plotly', 'Pandas'],
+        imgLabel: '[ doomsday dashboard screenshot ]',
+        imgSrc: 'assets/project-doomsday.png',
+      },
+      {
+        name: 'Job Tracker Dashboard',
+        desc: 'A personal tool for tracking job applications, statuses and follow-ups.',
+        tags: ['Django', 'PostgreSQL', 'React'],
+        imgLabel: '[ job tracker screenshot ]',
+        imgSrc: 'assets/project-jobtracker.png',
+      },
+      {
+        name: 'Stock Portfolio Analyser (CLI)',
+        desc: 'A command-line tool that pulls live market data via REST APIs to analyse portfolio performance.',
+        tags: ['Python', 'REST API', 'CLI'],
+        imgLabel: '[ CLI screenshot ]',
+        imgSrc: 'assets/project-cli-v2.png',
+      },
+    ];
+
+    return {
+      skillGroups,
+      projects,
+      modernistSubmitted: this.state.modernistSubmitted,
+      organicSubmitted: this.state.organicSubmitted,
+      formSending: this.state.sending,
+      sendLabel: this.state.sending ? 'Sending…' : 'Send Message',
+      onModernistSubmit: (e) => this.submitForm(e, 'modernistSubmitted'),
+      onOrganicSubmit: (e) => this.submitForm(e, 'organicSubmitted'),
+    };
+  }
+}
+</script>
+</body>
+</html>
