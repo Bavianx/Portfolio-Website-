@@ -18,22 +18,48 @@
 
 <div id="top" class="modernist-frame" style="min-height:100vh; font-family: system-ui, sans-serif; --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; scroll-behavior:smooth;" data-screen-label="Portfolio">
 
-  <nav class="nav" style="position:sticky; top:0; z-index:5; background:var(--color-bg); flex-wrap:nowrap; overflow-x:auto;">
+  <nav class="nav" style="position:sticky; top:0; z-index:5; background:var(--color-bg); flex-wrap:nowrap;">
     <a href="#top" onclick="{{ onScrollTo }}" class="nav-brand" style="flex:none; white-space:nowrap; font-family: monospace; cursor:pointer;">tavian@portfolio</a>
-    <a href="#experience" onclick="{{ onScrollTo }}" style="white-space:nowrap;">Experience</a>
-    <a href="#skills" onclick="{{ onScrollTo }}" style="white-space:nowrap;">Skills</a>
-    <a href="#projects" onclick="{{ onScrollTo }}" style="white-space:nowrap;">Projects</a>
-    <a href="#contact" onclick="{{ onScrollTo }}" style="white-space:nowrap;">Contact</a>
-    <div style="display:flex; align-items:center; gap:var(--space-4); flex:none;">
-      <a href="https://github.com/Bavianx" target="_blank" rel="noopener" class="btn btn-icon" title="GitHub" aria-label="GitHub">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"></path></svg>
-      </a>
-      <a class="btn btn-secondary" href="#" download="Tavian-Coulthard-Resume.pdf" style="white-space:nowrap;">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg>
-        Resume
-      </a>
-    </div>
+    <sc-if value="{{ !isMobile }}" hint-placeholder-val="{{ true }}">
+      <a href="#experience" onclick="{{ onScrollTo }}" style="white-space:nowrap; text-decoration:none; border-bottom:2px solid transparent;" style-hover="text-decoration:underline; border-bottom-color:var(--color-accent);">Experience</a>
+      <a href="#skills" onclick="{{ onScrollTo }}" style="white-space:nowrap; text-decoration:none; border-bottom:2px solid transparent;" style-hover="text-decoration:underline; border-bottom-color:var(--color-accent);">Skills</a>
+      <a href="#projects" onclick="{{ onScrollTo }}" style="white-space:nowrap; text-decoration:none; border-bottom:2px solid transparent;" style-hover="text-decoration:underline; border-bottom-color:var(--color-accent);">Projects</a>
+      <a href="#contact" onclick="{{ onScrollTo }}" style="white-space:nowrap; text-decoration:none; border-bottom:2px solid transparent;" style-hover="text-decoration:underline; border-bottom-color:var(--color-accent);">Contact</a>
+      <div style="display:flex; align-items:center; gap:var(--space-4); flex:none; margin-left:auto;">
+        <a href="https://github.com/Bavianx" target="_blank" rel="noopener" class="btn btn-icon" title="GitHub" aria-label="GitHub">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"></path></svg>
+        </a>
+        <a class="btn btn-secondary" href="#" download="Tavian-Coulthard-Resume.pdf" style="white-space:nowrap;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg>
+          Resume
+        </a>
+      </div>
+    </sc-if>
+    <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+      <button onclick="{{ onToggleMenu }}" aria-label="Toggle menu" style="margin-left:auto; background:none; border:2px solid var(--color-divider); border-radius:var(--radius-sm); width:40px; height:40px; display:flex; align-items:center; justify-content:center; flex:none; cursor:pointer; color:var(--color-text);">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+    </sc-if>
   </nav>
+  <sc-if value="{{ mobileMenuOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:sticky; top:64px; z-index:4; background:var(--color-bg); border-bottom:2px solid var(--color-divider); padding:16px 64px;">
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap:8px;">
+        <a href="#experience" onclick="{{ onScrollTo }}" style="padding:12px 0; text-decoration:none; border-bottom:2px solid transparent; display:inline-block;" style-hover="text-decoration:underline; border-bottom-color:var(--color-accent);">Experience</a>
+        <a href="#skills" onclick="{{ onScrollTo }}" style="padding:12px 0; text-decoration:none; border-bottom:2px solid transparent; display:inline-block;" style-hover="text-decoration:underline; border-bottom-color:var(--color-accent);">Skills</a>
+        <a href="#projects" onclick="{{ onScrollTo }}" style="padding:12px 0; text-decoration:none; border-bottom:2px solid transparent; display:inline-block;" style-hover="text-decoration:underline; border-bottom-color:var(--color-accent);">Projects</a>
+        <a href="#contact" onclick="{{ onScrollTo }}" style="padding:12px 0; text-decoration:none; border-bottom:2px solid transparent; display:inline-block;" style-hover="text-decoration:underline; border-bottom-color:var(--color-accent);">Contact</a>
+      </div>
+      <div style="display:flex; gap:12px; padding-top:12px;">
+        <a href="https://github.com/Bavianx" target="_blank" rel="noopener" class="btn btn-icon" title="GitHub" aria-label="GitHub">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"></path></svg>
+        </a>
+        <a class="btn btn-secondary" href="#" download="Tavian-Coulthard-Resume.pdf">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg>
+          Resume
+        </a>
+      </div>
+    </div>
+  </sc-if>
 
   <section style="padding: 96px 64px 72px; border-bottom: 2px solid var(--color-divider);">
     <div style="font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--color-accent-700); font-weight:700; margin-bottom:16px;">Junior Software Engineer</div>
@@ -46,7 +72,7 @@
   </section>
 
   <section id="experience" data-reveal="" style="padding: 72px 64px; border-bottom: 2px solid var(--color-divider);">
-    <h6 style="margin:0 0 32px;">/ Experience</h6>
+    <h6 style="margin:0 0 32px;">Experience</h6>
     <div style="display:flex; flex-direction:column;">
       <sc-for list="{{ experience }}" as="job" hint-placeholder-count="3">
         <div style="display:grid; grid-template-columns: 200px 1fr; gap:32px; padding:32px 0; border-top:2px solid var(--color-divider);">
@@ -69,20 +95,20 @@
 
   <section id="skills" data-reveal="" style="padding: 72px 64px; border-bottom: 2px solid var(--color-divider);">
     <h6 style="margin:0 0 32px;">/ SKILLS</h6>
-    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:2px; background:var(--color-divider);">
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:var(--space-4);">
       <sc-for list="{{ skillGroups }}" as="group" hint-placeholder-count="3">
-        <div style="background:var(--color-bg); padding:28px;">
+        <div style="padding:28px;">
           <h4 style="margin:0 0 16px;">{{ group.title }}</h4>
-          <div style="display: flex; flex-wrap: wrap; gap: 8px; width: 489px; height: 26px">
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
             <sc-for list="{{ group.items }}" as="skill" hint-placeholder-count="4">
-              <span class="tag tag-accent" style="background:var(--color-accent-700); color:#fff;">{{ skill }}</span>
+              <span class="tag tag-accent" style="background:var(--color-accent-700); color:#fff; white-space:nowrap;">{{ skill }}</span>
             </sc-for>
           </div>
         </div>
       </sc-for>
     </div>
   </section><section id="projects" data-reveal="" style="padding: 72px 64px; border-bottom: 2px solid var(--color-divider);">
-    <h6 style="margin:0 0 32px;">/ Projects</h6>
+    <h6 style="margin:0 0 32px;">Projects</h6>
     <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:24px;">
       <sc-for list="{{ projects }}" as="proj" hint-placeholder-count="4">
         <div class="card elev-sm" style="padding:0; overflow:hidden; transition:transform 0.2s ease, box-shadow 0.2s ease;" style-hover="transform:translateY(-6px); box-shadow:var(--shadow-lg);">
@@ -113,7 +139,7 @@
 
   <section id="contact" data-reveal="" style="padding: 72px 64px 120px; display:flex; flex-wrap:wrap; gap:48px;">
     <div style="flex:1 1 320px;">
-      <h6 style="margin:0 0 16px;">/ Contact</h6>
+      <h6 style="margin:0 0 16px;">Contact</h6>
       <h2 style="margin:0 0 16px;">Let's work together.</h2>
       <p style="opacity:0.8; max-width:420px;">Have a role, project or question? Send a message and I'll get back to you.</p>
     </div>
@@ -141,6 +167,8 @@ class Component extends DCLogic {
   state = {
     submitted: false,
     sending: false,
+    isMobile: false,
+    mobileMenuOpen: false,
   };
 
   async submitForm(e) {
@@ -172,10 +200,16 @@ class Component extends DCLogic {
     }, { threshold: 0.15 });
     this._observer = observer;
     document.querySelectorAll('[data-reveal]').forEach((el) => observer.observe(el));
+
+    const checkWidth = () => this.setState({ isMobile: window.innerWidth < 860 });
+    checkWidth();
+    this._resizeHandler = checkWidth;
+    window.addEventListener('resize', this._resizeHandler);
   }
 
   componentWillUnmount() {
     if (this._observer) this._observer.disconnect();
+    if (this._resizeHandler) window.removeEventListener('resize', this._resizeHandler);
   }
 
   scrollToHash(e) {
@@ -184,6 +218,7 @@ class Component extends DCLogic {
     e.preventDefault();
     const target = href === '#top' ? document.getElementById('top') : document.querySelector(href);
     if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    this.setState({ mobileMenuOpen: false });
   }
 
   renderVals() {
@@ -220,8 +255,8 @@ class Component extends DCLogic {
 
     const skillGroups = [
       { title: 'Languages & Frameworks', items: ['Python', 'Django', 'SQL', 'React', 'TypeScript'] },
-      { title: 'Libraries & Practices', items: ['Pandas', 'Plotly', 'PostgreSQL', 'NumPy', 'REST APIs', 'Git / GitHub', 'Redis'] },
-      { title: 'Systems & Infrastructure', items: ['Windows Server 2019', 'Network Security', 'Information Security Mgmt'] },
+      { title: 'Libraries & Practices', items: ['Pandas', 'Plotly', 'PostgreSQL', 'NumPy', 'REST APIs', 'Git', 'GitHub', 'Redis'] },
+      { title: 'Systems & Infrastructure', items: ['Windows Server 2019', 'Network Security', 'InfoSec Mgmt'] },
     ];
 
     const projects = [
@@ -268,6 +303,9 @@ class Component extends DCLogic {
       sendLabel: this.state.sending ? 'Sending…' : 'Send Message',
       onSubmit: (e) => this.submitForm(e),
       onScrollTo: (e) => this.scrollToHash(e),
+      isMobile: this.state.isMobile,
+      mobileMenuOpen: this.state.isMobile && this.state.mobileMenuOpen,
+      onToggleMenu: () => this.setState(s => ({ mobileMenuOpen: !s.mobileMenuOpen })),
     };
   }
 }
